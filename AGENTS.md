@@ -2,6 +2,41 @@
 
 This file provides guidance to AI coding agents (Claude Code, Gemini, etc.) when working with code in this repository.
 
+## Version Control Safety Protocol
+
+### IMPORTANT: Backup Branch Creation Before Commits
+
+**Always create a backup branch before making commits and pushes to preserve working state:**
+
+```bash
+# 1. Create backup branch with timestamp and descriptive name
+# Format: backup-YYYY-MM-DD-HHMM-short-description
+# Example: backup-2025-01-15-1430-auth-fix
+git checkout -b backup-$(date +%Y-%m-%d-%H%M)-<short-description>
+
+# 2. Push backup branch to remote
+git push -u origin backup-$(date +%Y-%m-%d-%H%M)-<short-description>
+
+# 3. Return to main branch for changes
+git checkout main
+
+# 4. NOW proceed with your commits and pushes
+git add .
+git commit -m "Your commit message"
+git push origin main
+```
+
+**Why this matters:**
+- Preserves known working state before changes
+- Protects against sync conflicts when pulling from upstream fork
+- Provides rollback points if issues arise
+- Prevents loss of custom modifications during upstream merges
+
+**Backup branch naming convention:**
+- `backup-` prefix for easy identification
+- `YYYY-MM-DD-HHMM` timestamp for chronological ordering
+- Short descriptive suffix (e.g., `auth-fix`, `ui-update`, `config-change`)
+
 ## Build and Development Commands
 
 ### Building Geary
