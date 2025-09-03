@@ -39,6 +39,38 @@ API documentation will be built if `valadoc` is installed.
 Consult the Meson documentation for information about configuring the
 build, installing, and so on.
 
+
+Updating from Source
+--------------------
+
+If you have built Geary from source and want to update to the latest version,
+it is recommended to first uninstall the old version before installing the new
+one. This ensures that any files no longer in use are removed, preventing
+potential conflicts.
+
+To update your source-built Geary installation, run the following commands
+from the top-level directory of the source code repository:
+
+```sh
+# Fetch the latest code from the repository
+git pull
+
+# Re-configure the build (if necessary)
+meson build --reconfigure
+
+# Build the new version
+ninja -C build
+
+# Uninstall the old version
+sudo ninja -C build uninstall
+
+# Install the new version
+sudo ninja -C build install
+```
+
+This process will give you a clean and reliable update.
+
+
 Build profiles
 --------------
 
